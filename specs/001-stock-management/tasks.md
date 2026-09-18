@@ -149,7 +149,7 @@
 - [ ] T054 [P] Preparar el script de empaquetado para Windows x64 en package.json y revisar la configuración de @yao-pkg/pkg para que genere release/stock-control-windows.exe sin Node.js en el equipo de destino, según la constitución y FR-025.
 - [ ] T055 Ejecutar la compilación y la validación del ejecutable Linux usando npm run package:linux y registrar el resultado en docs/evidencias/empaquetado-linux.md, comprobando que el binario arranca correctamente con rutas persistentes externas y sin errores de inicio en el entorno de desarrollo.
 - [ ] T056 Ejecutar la validación manual del ejecutable Windows en un entorno sin Node.js instalado y registrar el resultado en docs/evidencias/empaquetado-windows.md, comprobando que el archivo .exe mantiene la lógica de inventario, las rutas externas y el manejo de datos corruptos.
-- [ ] T057 [P] Crear y guardar la evidencia de empaquetado en docs/evidencias con comandos ejecutados, resultados observados y referencias a la validación de Linux y Windows, manteniendo trazabilidad con la constitución y los requisitos funcionales.
+- [ ] T057 [P] Crear y guardar la evidencia de empaquetado en docs/evidencias/empaquetado-linux.md y docs/evidencias/empaquetado-windows.md con comandos ejecutados, resultados observados y referencias a la validación de Linux y Windows, manteniendo trazabilidad con la constitución y los requisitos funcionales.
 
 ---
 
@@ -281,3 +281,54 @@
 - Los identificadores de tareas son estables y correlativos: T001 a T070.
 - Las rutas de archivos son específicas y se presentan como referencias directas a la estructura del proyecto.
 - La trazabilidad con los requisitos funcionales y las reglas del negocio queda explícita en cada bloque funcional y en las tareas de validación y cierre.
+
+---
+
+## Matriz de trazabilidad determinista
+
+| Requisito | Tareas de implementación | Tareas o archivos de prueba | Evidencia o criterio de validación |
+|-----------|--------------------------|----------------------------|----------------------------------|
+| FR-001 | T011, T024, T026, T028 | `tests/unit/product-registration.test.ts`; `tests/integration/cli-product-flow.test.ts` | Registro válido de producto con código normalizado, nombre, descripción, cantidad inicial y stock mínimo sin errores ni movimientos no autorizados. |
+| FR-002 | T011, T014, T024, T026 | `tests/unit/product-registration.test.ts`; `tests/integration/cli-product-flow.test.ts` | El código se normaliza con trim y lowercase; se rechaza vacío o inválido antes de persistir. |
+| FR-003 | T010, T015, T024, T026 | `tests/unit/product-registration.test.ts`; `tests/integration/cli-product-flow.test.ts` | Duplicado de código con mayúsculas y espacios se rechaza y conserva el inventario sin duplicados. |
+| FR-004 | T011, T014, T024, T026 | `tests/unit/product-registration.test.ts` | `name` y `description` con espacios vacíos se rechazan con error claro. |
+| FR-005 | T011, T014, T024, T026 | `tests/unit/product-registration.test.ts`; `tests/unit/stock-movements.test.ts` | Cantidades iniciales y stock mínimo no negativos; la cantidad inicial no genera movimiento. |
+| FR-006 | T025, T028, T041 | `tests/unit/list-products.test.ts`; `tests/integration/cli-product-flow.test.ts` | Consulta del catálogo completo con los productos y cantidades actuales visibles. |
+| FR-007 | T025, T028, T041 | `tests/unit/list-products.test.ts`; `tests/integration/cli-product-flow.test.ts` | Si no hay productos, la aplicación muestra mensaje explícito de ausencia. |
+| FR-008 | T031, T036, T051 | `tests/unit/add-stock-entry.test.ts`; `tests/integration/cli-stock-operations.test.ts` | Entrada de stock válida incrementa la cantidad disponible y crea un movimiento aceptado. |
+| FR-009 | T032, T036, T051 | `tests/unit/add-stock-exit.test.ts`; `tests/integration/cli-stock-operations.test.ts` | Salida válida decrementa cantidad disponible y crea movimiento aceptado. |
+| FR-010 | T014, T031, T032, T036 | `tests/unit/stock-movements.test.ts`; `tests/unit/add-stock-entry.test.ts`; `tests/unit/add-stock-exit.test.ts` | Cantidades de entrada y salida positivas enteras y mayores que cero. |
+| FR-011 | T013, T031, T032, T036 | `tests/unit/stock-movements.test.ts`; `tests/integration/cli-stock-operations.test.ts` | Producto inexistente se rechaza con error y no se altera ningún dato. |
+| FR-012 | T013, T032, T036 | `tests/unit/add-stock-exit.test.ts`; `tests/integration/cli-stock-operations.test.ts` | Salida mayor que la disponibilidad actual se rechaza sin modificar stock ni historial. |
+| FR-013 | T014, T032, T036 | `tests/unit/stock-movements.test.ts`; `tests/unit/add-stock-exit.test.ts` | La cantidad disponible no puede quedar negativa en ninguna operación. |
+| FR-014 | T012, T031, T032, T033, T036 | `tests/unit/stock-movements.test.ts`; `tests/integration/history-ordering.test.ts` | Cada entrada o salida exitosa deja un movimiento con id, tipo, cantidad, timestamp y resultingQuantity. |
+| FR-015 | T013, T031, T032, T034, T036 | `tests/unit/stock-movements.test.ts`; `tests/integration/cli-stock-operations.test.ts` | Las operaciones rechazadas no alteran productos ni generan movimientos. |
+| FR-016 | T014, T039, T041 | `tests/unit/low-stock.test.ts`; `tests/integration/cli-low-stock.test.ts` | Producto con availableQuantity <= minStock se considera bajo. |
+| FR-017 | T039, T041 | `tests/unit/low-stock.test.ts`; `tests/integration/cli-low-stock.test.ts` | Consulta de stock bajo devuelve los productos en condición de alerta. |
+| FR-018 | T039, T041 | `tests/unit/low-stock.test.ts`; `tests/integration/cli-low-stock.test.ts` | Si no hay stock bajo, la aplicación muestra mensaje explícito. |
+| FR-019 | T012, T043, T045 | `tests/unit/movement-history.test.ts`; `tests/integration/history-ordering.test.ts` | Historial completo disponible para consulta por el usuario. |
+| FR-020 | T012, T043, T044 | `tests/unit/movement-history.test.ts`; `tests/integration/history-ordering.test.ts` | Cada movimiento muestra código, tipo, cantidad, marca temporal y stock resultante. |
+| FR-021 | T012, T043, T045 | `tests/unit/movement-history.test.ts`; `tests/integration/history-ordering.test.ts` | El historial se presenta por timestamp descendente y desempate por id descendente. |
+| FR-022 | T043, T045 | `tests/unit/movement-history.test.ts`; `tests/integration/history-ordering.test.ts` | Si no hay movimientos, la aplicación muestra mensaje explícito. |
+| FR-023 | T048, T049, T052 | `tests/integration/cli-menu.test.ts`; `tests/integration/cli-product-flow.test.ts` | El menú permanece activo hasta que el usuario elige salir. |
+| FR-024 | T014, T049, T050, T052 | `tests/integration/cli-menu.test.ts`; `tests/integration/cli-stock-operations.test.ts` | Datos vacíos, no numéricos o incompletos se validan y se devuelve el control al menú con mensajes claros. |
+| FR-025 | T010, T017, T048, T051, T052 | `tests/integration/persistence.test.ts`; `tests/integration/cli-menu.test.ts` | La información persiste entre cierres y reinicios del programa. |
+| FR-026 | T019, T048, T052 | `tests/integration/persistence.test.ts`; `tests/integration/cli-menu.test.ts` | En la primera ejecución, el sistema inicia con colecciones vacías y operables si no existe persistencia. |
+| FR-027 | T007, T009, T019, T048, T052 | `tests/unit/paths.test.ts`; `tests/integration/startup-corruption.test.ts` | Si el archivo de datos es ilegible o corrupto, la aplicación informa y finaliza sin sobrescribirlo. |
+| FR-028 | T018, T034, T047, T051, T052 | `tests/integration/persistence.test.ts`; `tests/integration/persistence-corruption.test.ts`; `tests/integration/cli-stock-operations.test.ts` | Si falla la persistencia, la operación se rechaza y el inventario previo permanece intacto. |
+| BR-001 | T011, T014, T024, T026 | `tests/unit/product-registration.test.ts`; `tests/integration/cli-product-flow.test.ts` | Códigos normalizados con espacios y mayúsculas son equivalentes y únicos. |
+| BR-002 | T011, T014, T024 | `tests/unit/product-registration.test.ts`; `tests/unit/stock-movements.test.ts` | Cantidades de producto y mínimo deben ser enteros no negativos. |
+| BR-003 | T011, T014, T031, T032 | `tests/unit/stock-movements.test.ts`; `tests/unit/add-stock-entry.test.ts`; `tests/unit/add-stock-exit.test.ts` | Las cantidades de entrada y salida deben ser enteras positivas mayores que cero. |
+| BR-004 | T032, T036 | `tests/unit/add-stock-exit.test.ts`; `tests/integration/cli-stock-operations.test.ts` | Salida superior a la disponibilidad actual se rechaza. |
+| BR-005 | T014, T032, T036 | `tests/unit/stock-movements.test.ts`; `tests/unit/add-stock-exit.test.ts` | La cantidad disponible nunca es negativa. |
+| BR-006 | T031, T032, T033, T036 | `tests/unit/stock-movements.test.ts`; `tests/integration/history-ordering.test.ts` | Cada operación aceptada produce un movimiento asociado al producto afectado. |
+| BR-007 | T013, T031, T032, T034 | `tests/unit/stock-movements.test.ts`; `tests/integration/cli-stock-operations.test.ts` | Operaciones rechazadas son atómicas: no alteran stock ni crean movimiento. |
+| BR-008 | T014, T039, T041 | `tests/unit/low-stock.test.ts`; `tests/integration/cli-low-stock.test.ts` | Un producto se considera en stock bajo cuando availableQuantity <= minStock. |
+| BR-009 | T006, T010, T016, T017, T047 | `tests/unit/paths.test.ts`; `tests/integration/persistence.test.ts` | La persistencia JSON se conserva entre ejecuciones y fuera del ejecutable. |
+| BR-010 | T010, T048, T051 | `tests/integration/cli-menu.test.ts` | La aplicación opera en un único usuario local sin concurrencia multiusuario. |
+| BR-011 | T011, T024, T026 | `tests/unit/product-registration.test.ts`; `tests/integration/cli-product-flow.test.ts` | La cantidad inicial del producto se registra como disponibilidad inicial y no genera movimiento. |
+| BR-012 | T009, T013, T019, T048 | `tests/integration/startup-corruption.test.ts`; `tests/integration/persistence-corruption.test.ts` | Archivo corrupto al inicio se conserva sin sobrescritura y la aplicación finaliza de forma segura. |
+| BR-013 | T012, T033, T042, T043 | `tests/unit/movement-history.test.ts`; `tests/integration/history-ordering.test.ts` | Historial ordenado por timestamp descendente y desempate por id descendente. |
+| BR-014 | T018, T034, T047, T051, T068 | `tests/integration/persistence.test.ts`; `tests/integration/persistence-corruption.test.ts`; `tests/integration/cli-stock-operations.test.ts` | Si falla la persistencia, la operación completa se revierte y el estado previo queda intacto. |
+
+---
