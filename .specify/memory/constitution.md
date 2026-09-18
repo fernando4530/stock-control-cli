@@ -1,88 +1,102 @@
-# Stock Control CLI Constitution
+# Constitución de Stock Control CLI
 
 <!--
-Sync Impact Report
-- Version change: no previous constitution -> 1.0.0
-- Modified principles: scaffold placeholders -> seven mandatory project principles
-- Added sections: Technical Constraints; Quality Gates
-- Removed sections: none
-- Follow-up TODOs: none
+Informe de impacto de sincronización
+- Cambio de versión: 1.0.0 -> 1.0.1
+- Principios modificados: los siete principios existentes, únicamente en idioma y
+redacción editorial
+- Secciones agregadas: ninguna
+- Secciones eliminadas: ninguna
+- Seguimientos pendientes: ninguno
 -->
 
-## Core Principles
+## Principios Fundamentales
 
-### I. Specification-First Development
-Functional behavior MUST be specified before implementation. Specifications, plans and
-tasks are the source of truth, and code MUST NOT introduce behavior absent from the
-approved specification. Any material change discovered during development MUST update
-the corresponding SDD artifacts before implementation continues.
+### I. Desarrollo basado en especificaciones
+El comportamiento funcional DEBE especificarse antes de la implementación. Las
+especificaciones, los planes y las tareas son la fuente de verdad, y el código NO DEBE
+introducir comportamientos ausentes de la especificación aprobada. Todo cambio material
+descubierto durante el desarrollo DEBE actualizar los artefactos SDD correspondientes
+antes de continuar con la implementación.
 
-### II. Incremental and Traceable Implementation
-Implementation MUST proceed one independently testable user story at a time. Requirements,
-acceptance criteria, tasks, source code and tests MUST remain traceable to one another.
-SDD artifacts MUST be committed before their corresponding implementation so the intended
-behavior is reviewable first.
+Todo artefacto del proyecto destinado a lectura humana DEBE estar redactado en español.
+Esto incluye, como mínimo, especificaciones, planes, tareas, documentación, mensajes
+visibles para el usuario, criterios de aceptación, evidencia y reglas de gobernanza.
+Los nombres convencionales de carpetas y archivos técnicos, comandos, APIs, propiedades,
+símbolos de código y términos técnicos sin traducción natural PUEDEN permanecer en
+inglés.
 
-### III. Data Integrity
-Product codes MUST be unique. Stock quantities and minimum stock values MUST be
-non-negative integers. Stock exits MUST never produce negative availability. Every
-accepted stock entry or exit MUST create a movement record. Product and movement data
-MUST persist in external JSON files.
+### II. Implementación incremental y trazable
+La implementación DEBE avanzar una historia de usuario comprobable de forma independiente
+por vez. Los requisitos, criterios de aceptación, tareas, código fuente y pruebas DEBEN
+mantenerse trazables entre sí. Los artefactos SDD DEBEN registrarse en el control de
+versiones antes que su implementación correspondiente, para que el comportamiento
+previsto pueda revisarse primero.
 
-### IV. Testing and Validation
-Business rules MUST have automated tests covering successful operations, validation
-failures and relevant edge cases. Every increment MUST be validated against its
-acceptance criteria. An implementation is complete only when the tests pass and
-convergence finds no unresolved critical gaps.
+### III. Integridad de los datos
+Los códigos de producto DEBEN ser únicos. Las cantidades de stock y los valores de stock
+mínimo DEBEN ser enteros no negativos. Las salidas de stock NUNCA DEBEN producir
+disponibilidad negativa. Cada entrada o salida de stock aceptada DEBE crear un registro de
+movimiento. Los datos de productos y movimientos DEBEN persistir en archivos JSON externos.
 
-### V. Simplicity and Controlled Scope
-The project MUST use Node.js 24 and TypeScript and MUST remain a command-line
-application. It MUST NOT add a graphical interface, web server, database, authentication
-or cloud dependency. Production dependencies MUST be minimized in favor of Node.js
-standard-library capabilities. The architecture MUST be modular but proportional to the
-small scope.
+### IV. Pruebas y validación
+Las reglas de negocio DEBEN tener pruebas automatizadas que cubran operaciones exitosas,
+fallos de validación y casos límite relevantes. Cada incremento DEBE validarse contra sus
+criterios de aceptación. Una implementación está completa únicamente cuando las pruebas
+pasan y la convergencia no encuentra brechas críticas sin resolver.
 
-### VI. Portability and Packaging
-The application MUST work during development on Ubuntu Linux and MUST be compilable into
-a Linux executable and a Windows x64 `.exe`. The Windows executable MUST run without
-Node.js on the destination computer. Writable JSON files MUST remain external to the
-packaged executable, and file paths MUST work consistently on Linux and Windows.
+### V. Simplicidad y alcance controlado
+El proyecto DEBE usar Node.js 24 y TypeScript, y DEBE seguir siendo una aplicación de
+línea de comandos. NO DEBE agregar una interfaz gráfica, un servidor web, una base de
+datos, autenticación ni una dependencia de nube. Las dependencias de producción DEBEN
+minimizarse en favor de las capacidades de la biblioteca estándar de Node.js. La
+arquitectura DEBE ser modular, pero proporcional al alcance reducido.
 
-### VII. Agentic AI Governance
-The project MUST include one reusable declarative agent following the AS-Transformation
-canonical model. The agent MUST perform a real development-lifecycle task and include at
-least one skill and supporting resource. Its execution MUST produce reviewable evidence.
-AI-generated results MUST be verified before acceptance.
+### VI. Portabilidad y empaquetado
+La aplicación DEBE funcionar durante el desarrollo en Ubuntu Linux y DEBE poder compilarse
+como un ejecutable de Linux y como un `.exe` de Windows x64. El ejecutable de Windows DEBE
+funcionar sin Node.js en el equipo de destino. Los archivos JSON modificables DEBEN
+permanecer externos al ejecutable empaquetado, y las rutas de archivos DEBEN funcionar de
+forma coherente en Linux y Windows.
 
-## Technical Constraints
+### VII. Gobernanza de IA agéntica
+El proyecto DEBE incluir un agente declarativo reutilizable que siga el modelo canónico
+AS-Transformation. El agente DEBE realizar una tarea real del ciclo de vida de desarrollo
+e incluir al menos una skill y un recurso de apoyo. Su ejecución DEBE producir evidencia
+revisable. Los resultados generados por IA DEBEN verificarse antes de su aceptación.
 
-The project purpose is to build a small command-line stock management application as the
-final practical exercise for the NTT DATA Agentic AI and Spec-Driven Development learning
-path. All persistent product and movement data MUST use external JSON files. The runtime
-and source implementation MUST use Node.js 24 and TypeScript, with platform-independent
-path handling and no required network service, database or cloud resource.
+## Restricciones Técnicas
 
-## Quality Gates
+El propósito del proyecto es construir una pequeña aplicación de gestión de stock de
+línea de comandos como ejercicio práctico final del itinerario de aprendizaje de NTT DATA
+Agentic AI y Spec-Driven Development. Todos los datos persistentes de productos y
+movimientos DEBEN usar archivos JSON externos. El runtime y la implementación del código
+fuente DEBEN usar Node.js 24 y TypeScript, con manejo de rutas independiente de la
+plataforma y sin requerir un servicio de red, una base de datos ni un recurso de nube.
 
-Before implementation begins, the constitution, specification, plan and tasks MUST exist.
-Requirements and acceptance criteria MUST be explicit and testable. Automated tests MUST
-pass, and no stock operation may result in a negative quantity. JSON persistence MUST
-survive application restarts. At least one specification refinement or replanning instance
-MUST be documented. The declarative agent MUST be executed on the project and its result
-MUST be retained. Linux and Windows packaging evidence MUST be retained. Final delivery
-MUST include the executable, JSON data files, source code, SDD artifacts, agent definition,
-evidence, README and presentation.
+## Puertas de Calidad
 
-## Governance
+Antes de comenzar la implementación, DEBEN existir la constitución, la especificación, el
+plan y las tareas. Los requisitos y criterios de aceptación DEBEN ser explícitos y
+comprobables. Las pruebas automatizadas DEBEN pasar, y ninguna operación de stock PUEDE
+producir una cantidad negativa. La persistencia JSON DEBE sobrevivir a los reinicios de
+la aplicación. DEBE documentarse al menos un refinamiento de especificación o una
+replanificación. El agente declarativo DEBE ejecutarse en el proyecto y su resultado DEBE
+conservarse. DEBE conservarse evidencia del empaquetado para Linux y Windows. La entrega
+final DEBE incluir el ejecutable, los archivos de datos JSON, el código fuente, los
+artefactos SDD, la definición del agente, la evidencia, README y la presentación.
 
-This constitution overrides informal implementation preferences. Amendments MUST include
-the reason for the change and an impact assessment. Exceptions MUST be documented
-explicitly rather than implemented silently.
+## Gobernanza
 
-The constitution uses semantic versioning. A MAJOR version denotes backward-incompatible
-governance or principle changes, a MINOR version denotes added or materially expanded
-governance, and a PATCH version denotes clarifications or non-semantic refinements.
-Compliance MUST be reviewed at each increment and before final delivery, including the
-quality gates and evidence requirements above.
+Esta constitución prevalece sobre las preferencias informales de implementación. Las
+enmiendas DEBEN incluir el motivo del cambio y una evaluación de impacto. Las excepciones
+DEBEN documentarse explícitamente en lugar de implementarse de forma silenciosa.
 
-**Version**: 1.0.0 | **Ratified**: 2026-09-18 | **Last Amended**: 2026-09-18
+La constitución usa versionado semántico. Una versión MAJOR indica cambios incompatibles
+hacia atrás en la gobernanza o los principios; una versión MINOR indica gobernanza
+agregada o ampliada materialmente; y una versión PATCH indica aclaraciones o
+refinamientos no semánticos. El cumplimiento DEBE revisarse en cada incremento y antes de
+la entrega final, incluidas las puertas de calidad y los requisitos de evidencia
+anteriores.
+
+**Versión**: 1.0.1 | **Ratificada**: 2026-09-18 | **Última modificación**: 2026-09-18
