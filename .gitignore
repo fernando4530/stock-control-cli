@@ -1,0 +1,13 @@
+node_modules/
+dist/
+release/
+data/inventory.json
+data/inventory.json.tmp-*
+*.log
+.env*
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/

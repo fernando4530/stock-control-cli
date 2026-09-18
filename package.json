@@ -1,0 +1,20 @@
+{
+  "name": "stock-control-cli",
+  "version": "1.0.0",
+  "description": "CLI de gestión de stock con persistencia JSON local",
+  "type": "module",
+  "bin": "dist/src/main.js",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test \"dist/tests/**/*.test.js\"",
+    "package:linux": "pkg . --targets node24-linux-x64 --output release/stock-control-linux",
+    "package:windows": "pkg . --targets node24-win-x64 --output release/stock-control-windows.exe",
+    "package:all": "npm run package:linux && npm run package:windows"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@yao-pkg/pkg": "^6.11.0",
+    "typescript": "^5.9.0"
+  }
+}

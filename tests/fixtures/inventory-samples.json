@@ -1,0 +1,12 @@
+{
+  "products": [
+    {
+      "code": "p-001",
+      "name": "Producto de prueba",
+      "description": "Estado de ejemplo",
+      "availableQuantity": 10,
+      "minStock": 2
+    }
+  ],
+  "movements": []
+}

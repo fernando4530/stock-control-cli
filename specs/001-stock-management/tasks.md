@@ -26,12 +26,12 @@
 
 **Objetivo**: dejar la base técnica y la estructura inicial lista antes de implementar reglas de negocio.
 
-- [ ] T001 [P] Crear la estructura base del proyecto y los directorios src/app/cli, src/domain, src/use-cases, src/persistence, src/shared, tests/unit, tests/integration, tests/fixtures, data, dist, release y docs/evidencias en la raíz del repositorio.
-- [ ] T002 [P] Definir package.json con nombre, versión, scripts de build, test, package:linux, package:windows y package:all, dependencias de desarrollo y metadatos del CLI para el proyecto en package.json.
-- [ ] T003 [P] Configurar tsconfig.json con TypeScript estricto, target Node.js 24, include de src y tests, outDir dist y parámetros de compilación compatibles con el empaquetado para Linux y Windows en tsconfig.json.
-- [ ] T004 [P] Preparar .gitignore con exclusiones para node_modules, dist, release, data/inventory.json y artefactos generados, manteniendo solo la estructura de fuentes, especificaciones y evidencias en .gitignore.
-- [ ] T005 [P] Crear la estructura inicial de la CLI en src/main.ts, src/app/bootstrap.ts y src/app/cli/menu.ts para dejar el punto de entrada y la composición de la aplicación preparada para pruebas e integración.
-- [ ] T006 [P] Definir el contrato de scripts de validación y empaquetado para verificar build, test y packaging en package.json con trazabilidad a FR-023, FR-025, FR-026, FR-027 y BR-009.
+- [x] T001 [P] Crear la estructura base del proyecto y los directorios src/app/cli, src/domain, src/use-cases, src/persistence, src/shared, tests/unit, tests/integration, tests/fixtures, data, dist, release y docs/evidencias en la raíz del repositorio.
+- [x] T002 [P] Definir package.json con nombre, versión, scripts de build, test, package:linux, package:windows y package:all, dependencias de desarrollo y metadatos del CLI para el proyecto en package.json.
+- [x] T003 [P] Configurar tsconfig.json con TypeScript estricto, target Node.js 24, include de src y tests, outDir dist y parámetros de compilación compatibles con el empaquetado para Linux y Windows en tsconfig.json.
+- [x] T004 [P] Preparar .gitignore con exclusiones para node_modules, dist, release, data/inventory.json y artefactos generados, manteniendo solo la estructura de fuentes, especificaciones y evidencias en .gitignore.
+- [x] T005 [P] Crear la estructura inicial de la CLI en src/main.ts, src/app/bootstrap.ts y src/app/cli/menu.ts para dejar el punto de entrada y la composición de la aplicación preparada para pruebas e integración.
+- [x] T006 [P] Definir el contrato de scripts de validación y empaquetado para verificar build, test y packaging en package.json con trazabilidad a FR-023, FR-025, FR-026, FR-027 y BR-009.
 
 ---
 
@@ -39,21 +39,21 @@
 
 **Objetivo**: establecer los componentes fundamentales del dominio y de la persistencia, y dejar pruebas automáticas de los fundamentos antes de comenzar las historias.
 
-- [ ] T007 [P] Crear la prueba de resolución de rutas en tests/unit/paths.test.ts para validar la construcción de rutas multiplataforma y la resolución de data/inventory.json en desarrollo y en ejecutables empaquetados, con trazabilidad a FR-025, FR-026, FR-027 y BR-009.
-- [ ] T008 [P] Crear la prueba de persistencia y escritura atómica en tests/integration/persistence.test.ts para validar lectura, escritura, uso de archivo temporal, validación previa y reemplazo seguro del estado persistido, con trazabilidad a FR-025, FR-028 y BR-014.
-- [ ] T009 [P] Crear la prueba de inicio con datos corruptos en tests/integration/startup-corruption.test.ts para verificar que la aplicación detecte archivos ilegibles o corruptos, conserve el archivo original y finalice sin habilitar operaciones de inventario, con trazabilidad a FR-027 y BR-012.
-- [ ] T010 Definir la estructura base de InventoryState en src/domain/inventory-state.ts como entidad central del estado global del inventario, con los campos products y movements y la semántica de persistencia de FR-025, FR-026 y BR-009.
-- [ ] T011 Definir la entidad Product en src/domain/product.ts con code, name, description, availableQuantity y minStock, y dejar explícitas las reglas de validación de FR-001 a FR-005 y BR-001 a BR-003.
-- [ ] T012 Definir la entidad StockMovement en src/domain/stock-movement.ts con id, productCode, type, quantity, timestamp y resultingQuantity, y documentar la regla de orden descendente y el desempate por id según FR-019 a FR-021 y BR-013.
-- [ ] T013 Crear el módulo de errores y resultados de dominio en src/domain/errors.ts para distinguir errores de validación, no encontrado, persistencia, archivo corrupto y operación no admitida, con trazabilidad a FR-011, FR-015, FR-027, FR-028 y BR-007, BR-012, BR-014.
-- [ ] T014 Crear la capa de validación y normalización en src/domain/validations.ts y src/shared/normalize.ts para normalizar códigos, validar textos, cantidades enteras no negativas, cantidades positivas y condiciones de stock bajo, según FR-002, FR-004, FR-005, FR-010, FR-016 y BR-001 a BR-008.
-- [ ] T015 Definir las funciones de evolución y validación del estado global del inventario en src/domain/inventory-state.ts para controlar duplicados, transformaciones de stock, movimientos y estado de stock bajo, manteniendo una separación clara de la definición de InventoryState y la lógica de evolución del estado, sin marcar estas tareas como paralelas.
-- [ ] T016 Definir la resolución de rutas multiplataforma en src/persistence/paths.ts para data/inventory.json en desarrollo y en ejecutables empaquetados, con soporte para Linux y Windows y sin depender de rutas fijas del sistema operativo, según FR-025, FR-026, FR-027 y BR-009.
-- [ ] T017 Crear la capa-base de persistencia JSON en src/persistence/json-file.ts para lectura, escritura y validación estructural del archivo principal de inventario, con manejo defensivo de archivos vacíos, corruptos o inválidos, según FR-025 a FR-028 y BR-009, BR-012, BR-014.
-- [ ] T018 [P] Implementar la escritura atómica y la sustitución segura del archivo persistido en src/persistence/atomic-writer.ts usando archivo temporal, validación previa y renombrado final para evitar corrupción durante la persistencia, con trazabilidad a FR-025, FR-028 y BR-014.
-- [ ] T019 [P] Implementar la carga inicial y validación estructural del estado en src/use-cases/load-state.ts para crear data/ e inventory.json si no existen, conservar archivos corruptos y abortar con error claro cuando la estructura no sea válida, según FR-026, FR-027 y BR-012.
-- [ ] T020 [P] Crear el módulo de almacenamiento global y acceso persistente en src/persistence/inventory-store.ts para encapsular lectura, escritura y validación del estado y dejar un contrato de operaciones atómicas para casos de uso según BR-007 y BR-014.
-- [ ] T021 Ejecutar la verificación de fundamentos y registrar la evidencia en docs/evidencias/verificacion-fundamentos.md con los resultados de las pruebas de rutas, persistencia y arranque con archivos corruptos, junto con el estado de cumplimiento de la base del proyecto antes de iniciar US1.
+- [x] T007 [P] Crear la prueba de resolución de rutas en tests/unit/paths.test.ts para validar la construcción de rutas multiplataforma y la resolución de data/inventory.json en desarrollo y en ejecutables empaquetados, con trazabilidad a FR-025, FR-026, FR-027 y BR-009.
+- [x] T008 [P] Crear la prueba de persistencia y escritura atómica en tests/integration/persistence.test.ts para validar lectura, escritura, uso de archivo temporal, validación previa y reemplazo seguro del estado persistido, con trazabilidad a FR-025, FR-028 y BR-014.
+- [x] T009 [P] Crear la prueba de inicio con datos corruptos en tests/integration/startup-corruption.test.ts para verificar que la aplicación detecte archivos ilegibles o corruptos, conserve el archivo original y finalice sin habilitar operaciones de inventario, con trazabilidad a FR-027 y BR-012.
+- [x] T010 Definir la estructura base de InventoryState en src/domain/inventory-state.ts como entidad central del estado global del inventario, con los campos products y movements y la semántica de persistencia de FR-025, FR-026 y BR-009.
+- [x] T011 Definir la entidad Product en src/domain/product.ts con code, name, description, availableQuantity y minStock, y dejar explícitas las reglas de validación de FR-001 a FR-005 y BR-001 a BR-003.
+- [x] T012 Definir la entidad StockMovement en src/domain/stock-movement.ts con id, productCode, type, quantity, timestamp y resultingQuantity, y documentar la regla de orden descendente y el desempate por id según FR-019 a FR-021 y BR-013.
+- [x] T013 Crear el módulo de errores y resultados de dominio en src/domain/errors.ts para distinguir errores de validación, no encontrado, persistencia, archivo corrupto y operación no admitida, con trazabilidad a FR-011, FR-015, FR-027, FR-028 y BR-007, BR-012, BR-014.
+- [x] T014 Crear la capa de validación y normalización en src/domain/validations.ts y src/shared/normalize.ts para normalizar códigos, validar textos, cantidades enteras no negativas, cantidades positivas y condiciones de stock bajo, según FR-002, FR-004, FR-005, FR-010, FR-016 y BR-001 a BR-008.
+- [x] T015 Definir las funciones de evolución y validación del estado global del inventario en src/domain/inventory-state.ts para controlar duplicados, transformaciones de stock, movimientos y estado de stock bajo, manteniendo una separación clara de la definición de InventoryState y la lógica de evolución del estado, sin marcar estas tareas como paralelas.
+- [x] T016 Definir la resolución de rutas multiplataforma en src/persistence/paths.ts para data/inventory.json en desarrollo y en ejecutables empaquetados, con soporte para Linux y Windows y sin depender de rutas fijas del sistema operativo, según FR-025, FR-026, FR-027 y BR-009.
+- [x] T017 Crear la capa-base de persistencia JSON en src/persistence/json-file.ts para lectura, escritura y validación estructural del archivo principal de inventario, con manejo defensivo de archivos vacíos, corruptos o inválidos, según FR-025 a FR-028 y BR-009, BR-012, BR-014.
+- [x] T018 [P] Implementar la escritura atómica y la sustitución segura del archivo persistido en src/persistence/atomic-writer.ts usando archivo temporal, validación previa y renombrado final para evitar corrupción durante la persistencia, con trazabilidad a FR-025, FR-028 y BR-014.
+- [x] T019 [P] Implementar la carga inicial y validación estructural del estado en src/use-cases/load-state.ts para crear data/ e inventory.json si no existen, conservar archivos corruptos y abortar con error claro cuando la estructura no sea válida, según FR-026, FR-027 y BR-012.
+- [x] T020 [P] Crear el módulo de almacenamiento global y acceso persistente en src/persistence/inventory-store.ts para encapsular lectura, escritura y validación del estado y dejar un contrato de operaciones atómicas para casos de uso según BR-007 y BR-014.
+- [x] T021 Ejecutar la verificación de fundamentos y registrar la evidencia en docs/evidencias/verificacion-fundamentos.md con los resultados de las pruebas de rutas, persistencia y arranque con archivos corruptos, junto con el estado de cumplimiento de la base del proyecto antes de iniciar US1.
 
 ---
 
@@ -63,13 +63,13 @@
 
 **Prueba independiente**: se puede verificar creando varios productos, intentando duplicar un código con espacios y mayúsculas, y consultando el listado completo con cantidades válidas.
 
-- [ ] T022 [P] [US1] Escribir las pruebas de dominio y validación para registro de productos en tests/unit/product-registration.test.ts cubriendo códigos duplicados, nombres vacíos, cantidades iniciales no negativas y stock mínimo válido, con trazabilidad a FR-001 a FR-007 y BR-001 a BR-003.
-- [ ] T023 [P] [US1] Escribir la prueba de caso de uso para listar productos en tests/unit/list-products.test.ts con escenarios de catálogo vacío, catálogo con varios productos y consulta normalizada, según FR-006 y FR-007.
-- [ ] T024 [US1] Implementar el caso de uso de registro de producto en src/use-cases/register-product.ts para validar código normalizado, nombre, descripción, availableQuantity y minStock, crear el producto y persistir el estado sin movimiento, según FR-001 a FR-005, FR-015 y BR-001, BR-011, BR-014.
-- [ ] T025 [US1] Implementar la consulta de productos en src/use-cases/list-products.ts para devolver el catálogo completo con cantidades actuales y mostrar mensajes de ausencia cuando no existan productos, con base en FR-006 y FR-007.
-- [ ] T026 [US1] Añadir la validación y consolidación del catálogo en src/domain/inventory-state.ts para garantizar que no haya duplicados y que el inventario actual permanezca consistente, permitiendo la comprobación de stock bajo posterior según FR-003 y BR-001.
-- [ ] T027 [US1] Crear la prueba de integración del flujo del menú para registrar y consultar productos en tests/integration/cli-product-flow.test.ts validando la ejecución real del flujo de consola y la persistencia entre ejecuciones, con trazabilidad a FR-023 a FR-026.
-- [ ] T028 [US1] Validar el flujo independiente de US1 con pruebas unitarias e integración y comprobar que el producto se registre una sola vez, que el duplicado falle y que la consulta muestre la disponibilidad actual antes de avanzar a US2.
+- [x] T022 [P] [US1] Escribir las pruebas de dominio y validación para registro de productos en tests/unit/product-registration.test.ts cubriendo códigos duplicados, nombres vacíos, cantidades iniciales no negativas y stock mínimo válido, con trazabilidad a FR-001 a FR-007 y BR-001 a BR-003.
+- [x] T023 [P] [US1] Escribir la prueba de caso de uso para listar productos en tests/unit/list-products.test.ts con escenarios de catálogo vacío, catálogo con varios productos y consulta normalizada, según FR-006 y FR-007.
+- [x] T024 [US1] Implementar el caso de uso de registro de producto en src/use-cases/register-product.ts para validar código normalizado, nombre, descripción, availableQuantity y minStock, crear el producto y persistir el estado sin movimiento, según FR-001 a FR-005, FR-015 y BR-001, BR-011, BR-014.
+- [x] T025 [US1] Implementar la consulta de productos en src/use-cases/list-products.ts para devolver el catálogo completo con cantidades actuales y mostrar mensajes de ausencia cuando no existan productos, con base en FR-006 y FR-007.
+- [x] T026 [US1] Añadir la validación y consolidación del catálogo en src/domain/inventory-state.ts para garantizar que no haya duplicados y que el inventario actual permanezca consistente, permitiendo la comprobación de stock bajo posterior según FR-003 y BR-001.
+- [x] T027 [US1] Crear la prueba de integración del flujo del menú para registrar y consultar productos en tests/integration/cli-product-flow.test.ts validando la ejecución real del flujo de consola y la persistencia entre ejecuciones, con trazabilidad a FR-023 a FR-026.
+- [x] T028 [US1] Validar el flujo independiente de US1 con pruebas unitarias e integración y comprobar que el producto se registre una sola vez, que el duplicado falle y que la consulta muestre la disponibilidad actual antes de avanzar a US2.
 
 ---
 
@@ -81,14 +81,14 @@
 
 **Dependencia**: US2 debe ejecutarse después de US1 porque las entradas y salidas requieren que exista la funcionalidad base de registro y consulta de productos.
 
-- [ ] T029 [P] [US2] Escribir pruebas de dominio para entradas y salidas en tests/unit/stock-movements.test.ts cubriendo valor positivo, producto inexistente, salida excedida, stock negativo y ausencia de movimiento en operaciones rechazadas, con trazabilidad a FR-008 a FR-015 y BR-003 a BR-007.
-- [ ] T030 [P] [US2] Escribir pruebas de casos de uso de entrada y salida en tests/unit/add-stock-entry.test.ts y tests/unit/add-stock-exit.test.ts para validar el incremento, decremento y reversión de errores según FR-008 a FR-015 y BR-003 a BR-007.
-- [ ] T031 [US2] Implementar el caso de uso de entrada de stock en src/use-cases/add-stock-entry.ts para validar producto existente, cantidad entera positiva y persistir movimiento con resultingQuantity actualizado, según FR-008, FR-010, FR-014, FR-020 y BR-003, BR-006, BR-014.
-- [ ] T032 [US2] Implementar el caso de uso de salida de stock en src/use-cases/add-stock-exit.ts para validar producto existente, cantidad entera positiva, saldo suficiente y rechazo sin cambiar el estado si la operación no puede completarse, según FR-009, FR-010, FR-011, FR-012, FR-013, FR-015 y BR-004 a BR-007.
-- [ ] T033 [US2] Añadir el cálculo de resultingQuantity y la generación de ids secuenciales para stock movements en src/domain/stock-movement.ts y src/domain/inventory-state.ts, usando timestamp y el mayor id existente según FR-014, FR-020 y BR-013.
-- [ ] T034 [US2] Añadir la persistencia atómica y la reversión de cambios en src/persistence/inventory-store.ts para que, si falla el guardado, la operación rechazada no deje el inventario en estado parcialmente actualizado, según FR-028 y BR-014.
-- [ ] T035 [US2] Crear la prueba de integración del menú para entrada y salida en tests/integration/cli-stock-operations.test.ts validando la entrada del usuario, los mensajes de error y la persistencia entre ejecuciones, según FR-023, FR-024, FR-028 y BR-014.
-- [ ] T036 [US2] Validar el flujo independiente de US2 con pruebas unitarias e integración y comprobar que el historial y las cantidades resultantes queden coherentes antes de continuar con US3.
+- [x] T029 [P] [US2] Escribir pruebas de dominio para entradas y salidas en tests/unit/stock-movements.test.ts cubriendo valor positivo, producto inexistente, salida excedida, stock negativo y ausencia de movimiento en operaciones rechazadas, con trazabilidad a FR-008 a FR-015 y BR-003 a BR-007.
+- [x] T030 [P] [US2] Escribir pruebas de casos de uso de entrada y salida en tests/unit/add-stock-entry.test.ts y tests/unit/add-stock-exit.test.ts para validar el incremento, decremento y reversión de errores según FR-008 a FR-015 y BR-003 a BR-007.
+- [x] T031 [US2] Implementar el caso de uso de entrada de stock en src/use-cases/add-stock-entry.ts para validar producto existente, cantidad entera positiva y persistir movimiento con resultingQuantity actualizado, según FR-008, FR-010, FR-014, FR-020 y BR-003, BR-006, BR-014.
+- [x] T032 [US2] Implementar el caso de uso de salida de stock en src/use-cases/add-stock-exit.ts para validar producto existente, cantidad entera positiva, saldo suficiente y rechazo sin cambiar el estado si la operación no puede completarse, según FR-009, FR-010, FR-011, FR-012, FR-013, FR-015 y BR-004 a BR-007.
+- [x] T033 [US2] Añadir el cálculo de resultingQuantity y la generación de ids secuenciales para stock movements en src/domain/stock-movement.ts y src/domain/inventory-state.ts, usando timestamp y el mayor id existente según FR-014, FR-020 y BR-013.
+- [x] T034 [US2] Añadir la persistencia atómica y la reversión de cambios en src/persistence/inventory-store.ts para que, si falla el guardado, la operación rechazada no deje el inventario en estado parcialmente actualizado, según FR-028 y BR-014.
+- [x] T035 [US2] Crear la prueba de integración del menú para entrada y salida en tests/integration/cli-stock-operations.test.ts validando la entrada del usuario, los mensajes de error y la persistencia entre ejecuciones, según FR-023, FR-024, FR-028 y BR-014.
+- [x] T036 [US2] Validar el flujo independiente de US2 con pruebas unitarias e integración y comprobar que el historial y las cantidades resultantes queden coherentes antes de continuar con US3.
 
 ---
 
@@ -100,11 +100,11 @@
 
 **Dependencia**: US3 depende de US1 y US2 porque necesita el catálogo y la lógica de movimientos para evaluar disponibilidad real relativa al mínimo.
 
-- [ ] T037 [P] [US3] Escribir pruebas unitarias para el reporte de stock bajo en tests/unit/low-stock.test.ts cubriendo igualdad con minStock, producto por debajo del mínimo y ausencia de resultados, con trazabilidad a FR-016 a FR-018 y BR-008.
-- [ ] T038 [P] [US3] Escribir la prueba de integración específica de stock bajo en tests/integration/cli-low-stock.test.ts para verificar el flujo del menú y la salida de productos en condición de stock bajo, según FR-016 a FR-018 y BR-008.
-- [ ] T039 [US3] Implementar el caso de uso de consulta de stock bajo en src/use-cases/list-low-stock.ts para filtrar productos con availableQuantity <= minStock y devolver un mensaje explícito cuando no existan, según FR-016 a FR-018.
-- [ ] T040 [US3] Añadir la lógica de consulta y presentación en src/app/cli/formatter.ts para mostrar los productos con stock bajo en un formato legible y consistente, con mensajes claros para ausencia de resultados y trazabilidad con el contrato de la CLI en contracts/cli-contract.md.
-- [ ] T041 [US3] Validar la historia US3 con pruebas unitarias e integración del menú y confirmar que el criterio de stock bajo siga siendo aplicable después de entradas y salidas en el mismo inventario antes de avanzar a US4.
+- [x] T037 [P] [US3] Escribir pruebas unitarias para el reporte de stock bajo en tests/unit/low-stock.test.ts cubriendo igualdad con minStock, producto por debajo del mínimo y ausencia de resultados, con trazabilidad a FR-016 a FR-018 y BR-008.
+- [x] T038 [P] [US3] Escribir la prueba de integración específica de stock bajo en tests/integration/cli-low-stock.test.ts para verificar el flujo del menú y la salida de productos en condición de stock bajo, según FR-016 a FR-018 y BR-008.
+- [x] T039 [US3] Implementar el caso de uso de consulta de stock bajo en src/use-cases/list-low-stock.ts para filtrar productos con availableQuantity <= minStock y devolver un mensaje explícito cuando no existan, según FR-016 a FR-018.
+- [x] T040 [US3] Añadir la lógica de consulta y presentación en src/app/cli/formatter.ts para mostrar los productos con stock bajo en un formato legible y consistente, con mensajes claros para ausencia de resultados y trazabilidad con el contrato de la CLI en contracts/cli-contract.md.
+- [x] T041 [US3] Validar la historia US3 con pruebas unitarias e integración del menú y confirmar que el criterio de stock bajo siga siendo aplicable después de entradas y salidas en el mismo inventario antes de avanzar a US4.
 
 ---
 
@@ -116,10 +116,10 @@
 
 **Dependencia**: US4 depende de US2 porque el historial se genera a partir de operaciones aceptadas de movimiento.
 
-- [ ] T042 [P] [US4] Escribir las pruebas de dominio y persistencia para historial ordenado en tests/unit/movement-history.test.ts y tests/integration/history-ordering.test.ts cubriendo timestamps iguales, id como desempate, historial vacío y lista ordenada descendente, con trazabilidad a FR-019 a FR-022 y BR-013.
-- [ ] T043 [US4] Implementar el caso de uso de consulta de historial en src/use-cases/list-movements.ts para ordenar movimientos por timestamp descendente e id descendente, mostrando cada producto, tipo, cantidad, marca temporal y resultingQuantity, según FR-019 a FR-022.
-- [ ] T044 [US4] Añadir la presentación del historial en src/app/cli/formatter.ts para que las salidas sean legibles y excluyan artefactos vacíos, con mensajes explícitos cuando no existan movimientos y compatibilidad con el contrato de la CLI.
-- [ ] T045 [US4] Validar la historia US4 con pruebas unitarias e integración y confirmar que el historial refleje solamente movimientos aceptados, sin registros para operaciones rechazadas ni para la cantidad inicial del producto.
+- [x] T042 [P] [US4] Escribir las pruebas de dominio y persistencia para historial ordenado en tests/unit/movement-history.test.ts y tests/integration/history-ordering.test.ts cubriendo timestamps iguales, id como desempate, historial vacío y lista ordenada descendente, con trazabilidad a FR-019 a FR-022 y BR-013.
+- [x] T043 [US4] Implementar el caso de uso de consulta de historial en src/use-cases/list-movements.ts para ordenar movimientos por timestamp descendente e id descendente, mostrando cada producto, tipo, cantidad, marca temporal y resultingQuantity, según FR-019 a FR-022.
+- [x] T044 [US4] Añadir la presentación del historial en src/app/cli/formatter.ts para que las salidas sean legibles y excluyan artefactos vacíos, con mensajes explícitos cuando no existan movimientos y compatibilidad con el contrato de la CLI.
+- [x] T045 [US4] Validar la historia US4 con pruebas unitarias e integración y confirmar que el historial refleje solamente movimientos aceptados, sin registros para operaciones rechazadas ni para la cantidad inicial del producto.
 
 ---
 
@@ -131,13 +131,13 @@
 
 **Dependencia**: US5 integra todas las historias y debe ejecutarse después de US1, US2, US3 y US4.
 
-- [ ] T046 [P] [US5] Escribir pruebas de integración del menú en tests/integration/cli-menu.test.ts para validar opciones del menú, validación de entrada, persistencia entre ejecuciones y manejo del flujo de salida, según FR-023 a FR-028.
-- [ ] T047 [P] [US5] Escribir pruebas de persistencia y corrupción en tests/integration/persistence-corruption.test.ts para cubrir archivo inexistente, archivo corrupto, datos ilegibles y operación de guardado con fallo, según FR-025 a FR-028 y BR-009 a BR-014.
-- [ ] T048 [US5] Implementar la carga inicial del estado y validación del menú en src/app/bootstrap.ts para crear la estructura si hace falta, cargar el estado persistido y abortar con errores claros si el archivo está corrupto, según FR-025 a FR-028 y BR-012.
-- [ ] T049 [US5] Implementar la interfaz de menú y prompts en src/app/cli/prompts.ts y src/app/cli/menu.ts para mantener la aplicación activa hasta que el usuario salga, validar entradas vacías y no numéricas y devolver el control al menú sin estado inconsistente, según FR-023, FR-024 y BR-014.
-- [ ] T050 [US5] Implementar los mensajes de error y la gestión de fallas operativas en src/app/cli/formatter.ts para comunicar claramente el motivo del rechazo y la intervención del usuario, siguiendo el contrato de la CLI en contracts/cli-contract.md y la lógica de errores del dominio.
-- [ ] T051 [US5] Añadir la persistencia de la sesión y actualización de estado desde la CLI en src/app/bootstrap.ts y src/persistence/inventory-store.ts para garantizar que solo el estado persistido actualizado se considere válido, con rollback completo si la persistencia falla, según FR-028 y BR-014.
-- [ ] T052 [US5] Validar la historia US5 con pruebas de integración, confirmando que la aplicación permanezca operable, que los errores queden controlados y que los archivos corruptos se preserven sin sobrescritura ni actividad de inventario.
+- [x] T046 [P] [US5] Escribir pruebas de integración del menú en tests/integration/cli-menu.test.ts para validar opciones del menú, validación de entrada, persistencia entre ejecuciones y manejo del flujo de salida, según FR-023 a FR-028.
+- [x] T047 [P] [US5] Escribir pruebas de persistencia y corrupción en tests/integration/persistence-corruption.test.ts para cubrir archivo inexistente, archivo corrupto, datos ilegibles y operación de guardado con fallo, según FR-025 a FR-028 y BR-009 a BR-014.
+- [x] T048 [US5] Implementar la carga inicial del estado y validación del menú en src/app/bootstrap.ts para crear la estructura si hace falta, cargar el estado persistido y abortar con errores claros si el archivo está corrupto, según FR-025 a FR-028 y BR-012.
+- [x] T049 [US5] Implementar la interfaz de menú y prompts en src/app/cli/prompts.ts y src/app/cli/menu.ts para mantener la aplicación activa hasta que el usuario salga, validar entradas vacías y no numéricas y devolver el control al menú sin estado inconsistente, según FR-023, FR-024 y BR-014.
+- [x] T050 [US5] Implementar los mensajes de error y la gestión de fallas operativas en src/app/cli/formatter.ts para comunicar claramente el motivo del rechazo y la intervención del usuario, siguiendo el contrato de la CLI en contracts/cli-contract.md y la lógica de errores del dominio.
+- [x] T051 [US5] Añadir la persistencia de la sesión y actualización de estado desde la CLI en src/app/bootstrap.ts y src/persistence/inventory-store.ts para garantizar que solo el estado persistido actualizado se considere válido, con rollback completo si la persistencia falla, según FR-028 y BR-014.
+- [x] T052 [US5] Validar la historia US5 con pruebas de integración, confirmando que la aplicación permanezca operable, que los errores queden controlados y que los archivos corruptos se preserven sin sobrescritura ni actividad de inventario.
 
 ---
 
