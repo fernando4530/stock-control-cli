@@ -1,50 +1,88 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Stock Control CLI Constitution
+
+<!--
+Sync Impact Report
+- Version change: no previous constitution -> 1.0.0
+- Modified principles: scaffold placeholders -> seven mandatory project principles
+- Added sections: Technical Constraints; Quality Gates
+- Removed sections: none
+- Follow-up TODOs: none
+-->
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Specification-First Development
+Functional behavior MUST be specified before implementation. Specifications, plans and
+tasks are the source of truth, and code MUST NOT introduce behavior absent from the
+approved specification. Any material change discovered during development MUST update
+the corresponding SDD artifacts before implementation continues.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Incremental and Traceable Implementation
+Implementation MUST proceed one independently testable user story at a time. Requirements,
+acceptance criteria, tasks, source code and tests MUST remain traceable to one another.
+SDD artifacts MUST be committed before their corresponding implementation so the intended
+behavior is reviewable first.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Data Integrity
+Product codes MUST be unique. Stock quantities and minimum stock values MUST be
+non-negative integers. Stock exits MUST never produce negative availability. Every
+accepted stock entry or exit MUST create a movement record. Product and movement data
+MUST persist in external JSON files.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Testing and Validation
+Business rules MUST have automated tests covering successful operations, validation
+failures and relevant edge cases. Every increment MUST be validated against its
+acceptance criteria. An implementation is complete only when the tests pass and
+convergence finds no unresolved critical gaps.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Simplicity and Controlled Scope
+The project MUST use Node.js 24 and TypeScript and MUST remain a command-line
+application. It MUST NOT add a graphical interface, web server, database, authentication
+or cloud dependency. Production dependencies MUST be minimized in favor of Node.js
+standard-library capabilities. The architecture MUST be modular but proportional to the
+small scope.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### VI. Portability and Packaging
+The application MUST work during development on Ubuntu Linux and MUST be compilable into
+a Linux executable and a Windows x64 `.exe`. The Windows executable MUST run without
+Node.js on the destination computer. Writable JSON files MUST remain external to the
+packaged executable, and file paths MUST work consistently on Linux and Windows.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### VII. Agentic AI Governance
+The project MUST include one reusable declarative agent following the AS-Transformation
+canonical model. The agent MUST perform a real development-lifecycle task and include at
+least one skill and supporting resource. Its execution MUST produce reviewable evidence.
+AI-generated results MUST be verified before acceptance.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Technical Constraints
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+The project purpose is to build a small command-line stock management application as the
+final practical exercise for the NTT DATA Agentic AI and Spec-Driven Development learning
+path. All persistent product and movement data MUST use external JSON files. The runtime
+and source implementation MUST use Node.js 24 and TypeScript, with platform-independent
+path handling and no required network service, database or cloud resource.
+
+## Quality Gates
+
+Before implementation begins, the constitution, specification, plan and tasks MUST exist.
+Requirements and acceptance criteria MUST be explicit and testable. Automated tests MUST
+pass, and no stock operation may result in a negative quantity. JSON persistence MUST
+survive application restarts. At least one specification refinement or replanning instance
+MUST be documented. The declarative agent MUST be executed on the project and its result
+MUST be retained. Linux and Windows packaging evidence MUST be retained. Final delivery
+MUST include the executable, JSON data files, source code, SDD artifacts, agent definition,
+evidence, README and presentation.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution overrides informal implementation preferences. Amendments MUST include
+the reason for the change and an impact assessment. Exceptions MUST be documented
+explicitly rather than implemented silently.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+The constitution uses semantic versioning. A MAJOR version denotes backward-incompatible
+governance or principle changes, a MINOR version denotes added or materially expanded
+governance, and a PATCH version denotes clarifications or non-semantic refinements.
+Compliance MUST be reviewed at each increment and before final delivery, including the
+quality gates and evidence requirements above.
+
+**Version**: 1.0.0 | **Ratified**: 2026-09-18 | **Last Amended**: 2026-09-18
