@@ -1,7 +1,7 @@
 # Evidencia de empaquetado Windows
 
-**Fecha de validación:** 2026-09-19  
-**Entorno validado:** Windows x64 sin Node.js instalado  
+**Fecha de validación:** 2026-09-19
+**Entorno validado:** Windows x64 sin Node.js instalado
 **Alcance:** T056 y T057
 
 ## Procedimiento realizado

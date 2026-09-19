@@ -157,9 +157,9 @@
 
 **Objetivo**: generar la documentación técnica verificada por el agente declarativo después de que el código y las pruebas estén terminados.
 
-- [ ] T058 [P] Crear el agente declarativo .github/agents/documentador-codigo.agent.md con propósito, entradas, salidas, restricciones y procedimiento de revisión humana, conforme al acuerdo del plan técnico y a la constitución del proyecto.
-- [ ] T059 [P] Crear la skill .github/skills/documentar-codigo/SKILL.md con la secuencia para inspeccionar el código, corroborar artefactos SDD y redactar la documentación técnica en español sin inventar comportamientos no implementados.
-- [ ] T060 [P] Crear el recurso .github/resources/documentador-codigo/plantilla-documentacion.md con la estructura mínima de la documentación técnica y los apartados obligatorios: propósito, arquitectura, entidades, casos de uso, persistencia, CLI, pruebas, empaquetado y trazabilidad.
+- [x] T058 [P] Crear el agente declarativo .github/agents/documentador-codigo.agent.md con propósito, entradas, salidas, restricciones y procedimiento de revisión humana, conforme al acuerdo del plan técnico y a la constitución del proyecto.
+- [x] T059 [P] Crear la skill .github/skills/documentar-codigo/SKILL.md con la secuencia para inspeccionar el código, corroborar artefactos SDD y redactar la documentación técnica en español sin inventar comportamientos no implementados.
+- [x] T060 [P] Crear el recurso .github/resources/documentador-codigo/plantilla-documentacion.md con la estructura mínima de la documentación técnica y los apartados obligatorios: propósito, arquitectura, entidades, casos de uso, persistencia, CLI, pruebas, empaquetado y trazabilidad.
 - [ ] T061 Ejecutar el agente declarativo después de la implementación y validación del código para generar docs/documentacion-tecnica.md a partir de la constitución, la especificación, el plan, el código fuente, las pruebas y la configuración del proyecto.
 - [ ] T062 Revisar la salida del agente contra el código actual, los artefactos SDD y la evidencia de pruebas para detectar afirmaciones no verificadas, inconsistencias o inventos, y registrar las correcciones en docs/evidencias/ejecucion-agente-documentador.md.
 - [ ] T063 Consolidar la evidencia del agente declarativo en docs/evidencias/ejecucion-agente-documentador.md con objetivo, entradas analizadas, instrucción utilizada, salida generada, observaciones de revisión, correcciones y resultado final, de acuerdo con la gobernanza de IA de la constitución.
