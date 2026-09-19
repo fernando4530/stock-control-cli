@@ -148,8 +148,8 @@
 - [x] T053 [P] Preparar el script de empaquetado para Linux x64 en package.json y revisar la configuración de @yao-pkg/pkg para que genere release/stock-control-linux con salida nativa y sin depender de Node.js en el entorno de ejecución, según BR-009, FR-025 y la política de portabilidad de la constitución.
 - [x] T054 [P] Preparar el script de empaquetado para Windows x64 en package.json y revisar la configuración de @yao-pkg/pkg para que genere release/stock-control-windows.exe sin Node.js en el equipo de destino, según la constitución y FR-025.
 - [x] T055 Ejecutar la compilación y la validación del ejecutable Linux usando npm run package:linux y registrar el resultado en docs/evidencias/empaquetado-linux.md, comprobando que el binario arranca correctamente con rutas persistentes externas y sin errores de inicio en el entorno de desarrollo.
-- [ ] T056 Ejecutar la validación manual del ejecutable Windows en un entorno sin Node.js instalado y registrar el resultado en docs/evidencias/empaquetado-windows.md, comprobando que el archivo .exe mantiene la lógica de inventario, las rutas externas y el manejo de datos corruptos.
-- [ ] T057 [P] Crear y guardar la evidencia de empaquetado en docs/evidencias/empaquetado-linux.md y docs/evidencias/empaquetado-windows.md con comandos ejecutados, resultados observados y referencias a la validación de Linux y Windows, manteniendo trazabilidad con la constitución y los requisitos funcionales.
+- [x] T056 Ejecutar la validación manual del ejecutable Windows en un entorno sin Node.js instalado y registrar el resultado en docs/evidencias/empaquetado-windows.md, comprobando que el archivo .exe mantiene la lógica de inventario, las rutas externas y el manejo de datos corruptos.
+- [x] T057 [P] Crear y guardar la evidencia de empaquetado en docs/evidencias/empaquetado-linux.md y docs/evidencias/empaquetado-windows.md con comandos ejecutados, resultados observados y referencias a la validación de Linux y Windows, manteniendo trazabilidad con la constitución y los requisitos funcionales.
 
 ---
 

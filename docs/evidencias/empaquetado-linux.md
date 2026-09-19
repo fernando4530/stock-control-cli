@@ -1,7 +1,7 @@
 # Evidencia de empaquetado Linux
 
 **Fecha:** 2026-09-18
-**Alcance:** T053, T054 y T055
+**Alcance:** T053, T054 y T055. La evidencia complementaria de la validación manual Windows está en [empaquetado-windows.md](empaquetado-windows.md).
 
 ## Prerrequisitos
 
@@ -99,4 +99,4 @@ El `.gitignore` excluye `release/`, `dist/` y `data/inventory.json`, por lo que 
 
 ## Alcance de validación
 
-La validación funcional realizada corresponde únicamente a Linux. La validación manual del ejecutable Windows queda pendiente para T056. T057 permanece pendiente y no se marca con esta evidencia.
+La validación funcional descrita en este documento corresponde únicamente a Linux. La validación manual del ejecutable Windows realizada el 2026-09-19 se documenta por separado en [empaquetado-windows.md](empaquetado-windows.md). En conjunto, ambos documentos distinguen los entornos, los procedimientos y los resultados observados sin atribuir a Linux validaciones realizadas en Windows ni viceversa.
