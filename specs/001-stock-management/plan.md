@@ -351,7 +351,7 @@ npm run package:all
 ### Ejecución local
 
 ```bash
-node dist/main.js
+node dist/src/main.js
 ```
 
 ### Validación funcional sugerida

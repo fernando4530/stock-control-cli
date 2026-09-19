@@ -113,8 +113,9 @@ solo se marcaron T062 y T063 como completadas.
   observada es `dist/src/main.js`.
 - No existe evidencia manual Windows específica sobre archivos corruptos.
 - No existe medición documentada de SC-001.
-- T064, la validación formal final de ausencia de placeholders, TODO, decisiones
-  abiertas y texto no permitido, permanece pendiente.
+- T064 se completó con la auditoría final de `docs/documentacion-tecnica.md`; no
+  se identificaron marcadores de plantilla, decisiones abiertas presentadas como
+  resueltas ni texto explicativo en inglés.
 - Esta revisión confirma el respaldo documental disponible, pero no sustituye las
   validaciones futuras que las limitaciones anteriores requieren.
 

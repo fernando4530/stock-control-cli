@@ -24,7 +24,7 @@ npm run build
 3. Ejecutar la aplicación:
 
 ```bash
-node dist/main.js
+node dist/src/main.js
 ```
 
 La aplicación crea automáticamente el directorio `data` y el archivo `data/inventory.json` si no existen. En desarrollo, la ruta persistente es `<raíz-del-proyecto>/data/inventory.json`; en ejecutables empaquetados, `<directorio-del-ejecutable>/data/inventory.json`.

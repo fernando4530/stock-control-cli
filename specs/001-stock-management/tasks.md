@@ -163,7 +163,7 @@
 - [x] T061 Ejecutar el agente declarativo después de la implementación y validación del código para generar docs/documentacion-tecnica.md a partir de la constitución, la especificación, el plan, el código fuente, las pruebas y la configuración del proyecto.
 - [x] T062 Revisar la salida del agente contra el código actual, los artefactos SDD y la evidencia de pruebas para detectar afirmaciones no verificadas, inconsistencias o inventos, y registrar las correcciones en docs/evidencias/ejecucion-agente-documentador.md.
 - [x] T063 Consolidar la evidencia del agente declarativo en docs/evidencias/ejecucion-agente-documentador.md con objetivo, entradas analizadas, instrucción utilizada, salida generada, observaciones de revisión, correcciones y resultado final, de acuerdo con la gobernanza de IA de la constitución.
-- [ ] T064 Validar que la documentación técnica final refleje solo lo que existe en código y artefactos SDD, y que no incluya placeholders, TODO, decisiones abiertas ni texto en inglés salvo nombres técnicos y comandos permitidos por la constitución.
+- [x] T064 Validar que la documentación técnica final refleje solo lo que existe en código y artefactos SDD, y que no incluya placeholders, TODO, decisiones abiertas ni texto en inglés salvo nombres técnicos y comandos permitidos por la constitución.
 
 ---
 
@@ -171,12 +171,12 @@
 
 **Objetivo**: cerrar la entrega con documentación, trazabilidad y verificación final de cumplimiento.
 
-- [ ] T065 Crear el README completo en español en README.md con objetivo del proyecto, requisitos, guía de instalación, ejecución, validación de pruebas y referencias a la persistencia externa según quickstart.md y la constitución.
-- [ ] T066 Crear la guía de uso en español en docs/guia-uso.md con instrucciones de registro de productos, entradas, salidas, stock bajo, historial, persistencia y manejo de errores del menú.
-- [ ] T067 Revisar el cumplimiento constitucional mediante una auditoría final en docs/evidencias/cumplimiento-constitucion.md, confirmando que no se añadieron funcionalidades fuera del alcance y que cada requisito de la especificación tiene una prueba y una tarea asociada.
-- [ ] T068 Ejecutar la batería completa de pruebas con npm test o el comando equivalente y registrar el resultado en docs/evidencias/resultados-pruebas.md para confirmar que dominio, casos de uso, persistencia, menú y validación de corrupción pasan íntegramente antes de cerrar la entrega.
-- [ ] T069 Ejecutar la verificación de trazabilidad y registrar el resultado en docs/evidencias/trazabilidad-requisitos.md para comprobar que cada requisito FR-001 a FR-028 y BR-001 a BR-014 cuenta con tareas concretas, pruebas asociadas y evidencia de validación en el proyecto.
-- [ ] T070 Preparar el inventario final de entrega en docs/evidencias/inventario-entrega.md con el listado de artefactos, binarios, documentación técnica, README, guía de uso y evidencias finales para la entrega del proyecto.
+- [x] T065 Crear el README completo en español en README.md con objetivo del proyecto, requisitos, guía de instalación, ejecución, validación de pruebas y referencias a la persistencia externa según quickstart.md y la constitución.
+- [x] T066 Crear la guía de uso en español en docs/guia-uso.md con instrucciones de registro de productos, entradas, salidas, stock bajo, historial, persistencia y manejo de errores del menú.
+- [x] T067 Revisar el cumplimiento constitucional mediante una auditoría final en docs/evidencias/cumplimiento-constitucion.md, confirmando que no se añadieron funcionalidades fuera del alcance y que cada requisito de la especificación tiene una prueba y una tarea asociada.
+- [x] T068 Ejecutar la batería completa de pruebas con npm test o el comando equivalente y registrar el resultado en docs/evidencias/resultados-pruebas.md para confirmar que dominio, casos de uso, persistencia, menú y validación de corrupción pasan íntegramente antes de cerrar la entrega.
+- [x] T069 Ejecutar la verificación de trazabilidad y registrar el resultado en docs/evidencias/trazabilidad-requisitos.md para comprobar que cada requisito FR-001 a FR-028 y BR-001 a BR-014 cuenta con tareas concretas, pruebas asociadas y evidencia de validación en el proyecto.
+- [x] T070 Preparar el inventario final de entrega en docs/evidencias/inventario-entrega.md con el listado de artefactos, binarios, documentación técnica, README, guía de uso y evidencias finales para la entrega del proyecto.
 
 ---
 

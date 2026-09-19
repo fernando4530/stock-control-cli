@@ -182,7 +182,7 @@ Las pruebas presentes cubren:
 - lectura, escritura, corrupción, arranque defensivo y rollback de persistencia;
 - flujos integrados de productos, movimientos, stock bajo y menú.
 
-La evidencia de fundamentos documenta la ejecución de 4 pruebas con 4 aprobadas y 0 fallidas. La evidencia de empaquetado Linux documenta `npm test` con 20 pruebas, 20 aprobadas y 0 fallidas. Los archivos de pruebas inspeccionados definen escenarios, pero su mera existencia no se interpreta como resultado de ejecución fuera de esas evidencias (`tests/`, `docs/evidencias/verificacion-fundamentos.md`, `docs/evidencias/empaquetado-linux.md`).
+La evidencia de fundamentos documenta la validación inicial de la base del proyecto. La evidencia final en `docs/evidencias/resultados-pruebas.md` registra la ejecución completa de `npm run typecheck`, `npm test` y `npm run build`, con 20 pruebas aprobadas y 0 fallidas. Esta evidencia cubre dominio, casos de uso, persistencia, corrupción, rollback, rutas y flujos integrados de la CLI.
 
 ### Decisiones SDD
 
@@ -190,7 +190,7 @@ La estrategia SDD requiere pruebas de dominio, casos de uso, persistencia, menú
 
 ### Limitaciones
 
-La evidencia autorizada no documenta una ejecución completa posterior a la generación de esta documentación. Tampoco documenta mediciones del criterio SC-001 ni una prueba Windows de corrupción.
+La ejecución completa posterior a la generación de esta documentación está registrada en `docs/evidencias/resultados-pruebas.md`. Permanece sin medición específica el criterio SC-001 y no se realizó una prueba manual de corrupción de datos en Windows.
 
 ## Compilación y empaquetado
 
@@ -221,7 +221,8 @@ npm run package:windows
 npm run package:all
 ```
 
-La entrada compilada declarada por `package.json` es `dist/src/main.js`; la ejecución local indicada por el plan es `node dist/main.js`, pero esa ruta del plan no coincide con el campo `bin` ni con el `rootDir`/`outDir` observables del proyecto. Por esta diferencia, la ruta de ejecución local del plan se marca como no verificada (`package.json`, `tsconfig.json`, `specs/001-stock-management/plan.md`).
+La entrada compilada declarada por `package.json` es `dist/src/main.js`. El agente detectó que la ruta originalmente indicada en el plan no coincidía con el campo `bin` ni con la configuración `rootDir`/`outDir`. Durante la revisión final, el plan y la guía rápida se corrigieron para utilizar la ruta verificable `node dist/src/main.js` (`package.json`, `tsconfig.json`, `specs/001-stock-management/plan.md`).
+
 
 ## Trazabilidad
 
@@ -234,18 +235,17 @@ La entrada compilada declarada por `package.json` es `dist/src/main.js`; la ejec
 | FR-023..FR-028, BR-009..BR-014 | `menu.ts`, `bootstrap.ts`, `load-state.ts`, `inventory-store.ts`, `json-file.ts`, `atomic-writer.ts` | `tests/integration/cli-menu.test.ts`, pruebas de persistencia/corrupción/rollback y evidencias autorizadas |
 | Constitución VI y empaquetado SDD | scripts de `package.json`, `paths.ts` | `docs/evidencias/empaquetado-linux.md`, `docs/evidencias/empaquetado-windows.md` |
 
-La relación entre cada requisito individual y una prueba pasada no puede afirmarse para todos los requisitos únicamente con las evidencias disponibles; la tabla expresa la relación de áreas documentada por el plan y observable en los nombres de módulos y pruebas.
+La trazabilidad individual de FR-001 a FR-028 y BR-001 a BR-014 está consolidada en `docs/evidencias/trazabilidad-requisitos.md`, donde cada requisito se relaciona con tareas, implementación, pruebas o evidencias y estado final.
 
 ## Limitaciones
 
-- T062 y T063 permanecen pendientes; todavía no existe `docs/evidencias/ejecucion-agente-documentador.md` y este documento no la crea.
-- T064 permanece pendiente, por lo que la validación formal de ausencia de marcadores y decisiones abiertas aún no está registrada como tarea completada.
+- T062 y T063 están respaldadas por `docs/evidencias/ejecucion-agente-documentador.md`.
 - La especificación está en estado `Borrador`.
-- La ruta `node dist/main.js` indicada en el plan no queda confirmada por `package.json` y `tsconfig.json`; se conserva como limitación de ejecución no verificada.
+- La diferencia detectada entre la ruta planificada y la salida real fue corregida durante la revisión final; el plan, la guía rápida y la implementación utilizan `node dist/src/main.js`.
 - El plan menciona `src/shared/time.ts`, `src/shared/logger.ts` y algunos archivos de pruebas que no aparecen en la estructura inspeccionada.
 - No hay evidencia manual Windows del escenario de datos corruptos.
 - No se documentan mediciones del tiempo de registro previsto por SC-001.
-- La documentación se basa en las fuentes inspeccionadas y no constituye por sí sola la aprobación de la revisión humana exigida por la gobernanza.
+- La revisión humana y la aceptación de la salida del agente están registradas en `docs/evidencias/ejecucion-agente-documentador.md`.
 
 ## Clasificación de afirmaciones
 
