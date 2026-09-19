@@ -161,8 +161,8 @@
 - [x] T059 [P] Crear la skill .github/skills/documentar-codigo/SKILL.md con la secuencia para inspeccionar el código, corroborar artefactos SDD y redactar la documentación técnica en español sin inventar comportamientos no implementados.
 - [x] T060 [P] Crear el recurso .github/resources/documentador-codigo/plantilla-documentacion.md con la estructura mínima de la documentación técnica y los apartados obligatorios: propósito, arquitectura, entidades, casos de uso, persistencia, CLI, pruebas, empaquetado y trazabilidad.
 - [x] T061 Ejecutar el agente declarativo después de la implementación y validación del código para generar docs/documentacion-tecnica.md a partir de la constitución, la especificación, el plan, el código fuente, las pruebas y la configuración del proyecto.
-- [ ] T062 Revisar la salida del agente contra el código actual, los artefactos SDD y la evidencia de pruebas para detectar afirmaciones no verificadas, inconsistencias o inventos, y registrar las correcciones en docs/evidencias/ejecucion-agente-documentador.md.
-- [ ] T063 Consolidar la evidencia del agente declarativo en docs/evidencias/ejecucion-agente-documentador.md con objetivo, entradas analizadas, instrucción utilizada, salida generada, observaciones de revisión, correcciones y resultado final, de acuerdo con la gobernanza de IA de la constitución.
+- [x] T062 Revisar la salida del agente contra el código actual, los artefactos SDD y la evidencia de pruebas para detectar afirmaciones no verificadas, inconsistencias o inventos, y registrar las correcciones en docs/evidencias/ejecucion-agente-documentador.md.
+- [x] T063 Consolidar la evidencia del agente declarativo en docs/evidencias/ejecucion-agente-documentador.md con objetivo, entradas analizadas, instrucción utilizada, salida generada, observaciones de revisión, correcciones y resultado final, de acuerdo con la gobernanza de IA de la constitución.
 - [ ] T064 Validar que la documentación técnica final refleje solo lo que existe en código y artefactos SDD, y que no incluya placeholders, TODO, decisiones abiertas ni texto en inglés salvo nombres técnicos y comandos permitidos por la constitución.
 
 ---

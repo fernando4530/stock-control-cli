@@ -198,7 +198,7 @@ La evidencia autorizada no documenta una ejecución completa posterior a la gene
 
 `package.json` declara TypeScript estricto mediante `typecheck` y `build`, pruebas con `node --test`, y scripts `package:linux`, `package:windows` y `package:all`. Declara `typescript`, `@types/node` y `@yao-pkg/pkg` como dependencias de desarrollo, sin dependencias de producción (`package.json`, `tsconfig.json`).
 
-La evidencia de empaquetado documenta ejecutables Linux x64 y Windows x64. Linux fue validado funcionalmente con datos externos al ejecutable. Windows fue validado manualmente en Windows x64 sin Node.js instalado, incluyendo persistencia tras reinicio (`docs/evidencias/empaquetado-linux.md`, `docs/evidencias/empaquetado-windows.md`).
+La evidencia de empaquetado documenta la generación de ejecutables Linux x64 y Windows x64. Linux fue validado funcionalmente con datos externos al ejecutable. Windows fue validado manualmente en Windows x64 sin Node.js instalado, incluyendo persistencia tras reinicio; esa validación está separada de la mera generación del artefacto (`docs/evidencias/empaquetado-linux.md`, `docs/evidencias/empaquetado-windows.md`).
 
 ### Decisiones SDD
 
